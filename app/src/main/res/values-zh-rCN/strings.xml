@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">破濒科技通信</string>
+    <string name="app_name">2021电赛A题</string>
     <string name="navigation_drawer_open">打开导航菜单</string>
     <string name="navigation_drawer_close">关闭导航菜单</string>
-    <string name="nav_header_title">破濒科技通信</string>
-    <string name="nav_header_subtitle">408 电子工作室</string>
-    <string name="nav_header_desc">刘教授团队，五年项目开发经验</string>
+    <string name="nav_header_title">赛区编号：2602</string>
+    <string name="nav_header_subtitle">信号失真度测量装置</string>
+    <string name="nav_header_desc">2021 年全国大学生电子设计竞赛</string>
     <string name="action_settings">设置</string>
     <string name="menu_home">主页</string>
     <string name="menu_serial_assistant">串口助手</string>
-    <string name="menu_oscilloscope">示波器</string>
+    <string name="menu_oscilloscope">仪表</string>
     <string name="lan_as_client_label">作为 TCP 客户端</string>
     <string name="lan_as_server_label">作为 TCP 服务端</string>
     <string name="menu_connect">连接</string>
@@ -17,7 +17,7 @@
     <string name="stop_connect">断开连接</string>
     <string name="text_home">现在让我们来配置一下连接属性吧</string>
     <string name="server_ip_address">服务器 IP 地址</string>
-    <string name="server_port">服务器端口号</string>
+    <string name="server_port">服务器密码</string>
 	<string name="switch_to_landscape">切换为横屏</string>
     <string name="switch_to_portrait">切换为竖屏</string>
 	<string name="clear_message">清空</string>
@@ -38,4 +38,16 @@
 	<string name="uncaught_wifi_connect">未连接 WLAN</string>
 	<string name="uncaught_wifi_connect_info">当前未连接到 WLAN，请尝试连接后使用本应用，是否立即连接？</string>
 	<string name="to_connect">去连接</string>
+	<string name="test_a">2021 年全国大学生电子设计竞赛\nA 题 - 信号失真度测量装置</string>
+	<string name="measure_signal_frequency">测量信号基波频率</string>
+	<string name="thd">THD</string>
+	<string name="um1">Um1</string>
+	<string name="spectrum_dataset">频谱</string>
+	<string name="no_wave_data_available">无波形数据</string>
+	<string name="no_spectrum_data_available">无频谱数据</string>
+	<string name="entry">进入</string>
+	<string name="um2">Um2=Um2/Um1</string>
+	<string name="um3">Um3=Um3/Um1</string>
+	<string name="um4">Um4=Um4/Um1</string>
+	<string name="um5">Um5=Um5/Um1</string>
 </resources>

@@ -18,14 +18,16 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.pb_408es.entry.MainActivity;
 import com.pb_408es.entry.R;
 import com.pb_408es.entry.databinding.FragmentOscilloscopeBinding;
 
-public class OscilloscopeFragment extends Fragment implements OnChartValueSelectedListener {
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
+
+public class OscilloscopeFragment extends Fragment {
 
 	private OscilloscopeViewModel oscilloscopeViewModel;
 	private FragmentOscilloscopeBinding binding;
@@ -36,8 +38,9 @@ public class OscilloscopeFragment extends Fragment implements OnChartValueSelect
 		return MainActivity.mainActivity;
 	}
 
-	private TextView chartValue = null;
-	private LineChart lineChart = null;
+	private LineChart waveChart = null;
+	private LineChart spectrumChart = null;
+	private TextView[] textViews = null;
 
 	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		if (rootView != null) { // 单例化
@@ -50,11 +53,14 @@ public class OscilloscopeFragment extends Fragment implements OnChartValueSelect
 		binding = FragmentOscilloscopeBinding.inflate(inflater, container, false);
 		View root = binding.getRoot();
 
-		chartValue = binding.chartValue;
-		lineChart = binding.lineChart;
-//		lineChart = new LineChart(root.getContext());
-//		binding.chartConstLayout.addView(lineChart);
-		initLineChart();
+		waveChart = binding.waveChart;
+		spectrumChart = binding.spectrumChart;
+		initWaveChart();
+		initSpectrumChart();
+
+		textViews = new TextView[] {
+				binding.fms, binding.thd, binding.um1, binding.um2, binding.um3, binding.um4, binding.um5
+		};
 		return rootView = root;
 	}
 
@@ -67,204 +73,277 @@ public class OscilloscopeFragment extends Fragment implements OnChartValueSelect
 	int lastValue = 0;
 
 	public void addPoint(int value) {
-		setText(value, _Color.GREY);
 		addEntry(value);
 		lastValue = value;
-//		Log.d("point size:", Integer.toString(pointValues.size()));
-//		Log.d("axis size:", Integer.toString(axisValues.size()));
 	}
 
 	protected static final float X_MIN = 0;
 	protected static final float X_MAX = -1;
 	protected static final float Y_MIN = 0;
-	protected static final float Y_MAX = 4095;
-	protected static final float X_VIEW_MIN = 7;
-	protected static final float X_VIEW_MAX = 1024;
+	protected static final float Y_MAX = 3.3f;
+	protected static final float Y_MAX_CODE = 4095;
+	protected static final float X_VIEW_MIN = 100;
+	protected static final float X_VIEW_MAX = 1023;
+	protected static final float SPECTRUM_X_MAX = 511;
 
-	private void initLineChart() {
+	private void initWaveChart() {
 		// 背景色
-//		lineChart.setBackgroundColor(Color.WHITE);
+//		waveChart.setBackgroundColor(Color.WHITE);
 
 		// 图表的文本描述
-		lineChart.getDescription().setEnabled(false);
-		lineChart.setNoDataText(getResources().getString(R.string.no_chart_data_available));
+		waveChart.getDescription().setEnabled(false);
+		waveChart.setNoDataText(getResources().getString(R.string.no_wave_data_available));
+		waveChart.getLegend().setEnabled(false);
 
 		// 手势设置
-		lineChart.setTouchEnabled(true);
+		waveChart.setTouchEnabled(true);
 
 		// 添加监听器
-		lineChart.setOnChartValueSelectedListener(this);
-		lineChart.setDrawGridBackground(false);
+		waveChart.setDrawGridBackground(false);
 
 		// 设置拖拽、缩放等
-		lineChart.setDragEnabled(true);
-		lineChart.setScaleEnabled(true);
-		lineChart.setScaleXEnabled(true);
-		lineChart.setScaleYEnabled(false);
-		lineChart.setPinchZoom(true);// 设置双指缩放
-		lineChart.setDragDecelerationEnabled(true);
+		waveChart.setDragEnabled(true);
+		waveChart.setScaleEnabled(true);
+		waveChart.setScaleXEnabled(true);
+		waveChart.setScaleYEnabled(false);
+		waveChart.setPinchZoom(true);// 设置双指缩放
+		waveChart.setDragDecelerationEnabled(true);
 
 		// 获取 Y 轴
-		lineChart.getAxisRight().setEnabled(false);
-		lineChart.getAxisLeft().setAxisMinimum(Y_MIN);
-		lineChart.getAxisLeft().setAxisMaximum(Y_MAX);
-		lineChart.getXAxis().setAxisMinimum(X_MIN);
-//		lineChart.getXAxis().setAxisMaximum(10);
-		lineChart.setVisibleXRangeMinimum(X_VIEW_MIN);
-		lineChart.setVisibleXRangeMaximum(X_VIEW_MAX);
+		waveChart.getAxisRight().setEnabled(false);
+		waveChart.getAxisLeft().setAxisMinimum(Y_MIN);
+		waveChart.getAxisLeft().setAxisMaximum(Y_MAX);
+		waveChart.getXAxis().setAxisMinimum(X_MIN);
+//		waveChart.getXAxis().setAxisMaximum(10);
+		waveChart.setVisibleXRangeMinimum(X_VIEW_MIN);
+		waveChart.setVisibleXRangeMaximum(X_VIEW_MAX);
 	}
 
-	private void addEntry(float value) {
-		if (lineChart.getData() == null) {
-			lineChart.setData(new LineData());
-			lineChart.invalidate();
+	private void addEntry(float... values) {
+		if (waveChart.getData() == null) {
+			waveChart.setData(new LineData());
+			waveChart.invalidate();
 		}
-		LineData lineData = lineChart.getData();
+		LineData lineData = waveChart.getData();
+		if (lineData == null) return;
+
+		ILineDataSet lastSet = lineData.getDataSetByIndex(0);//lineData.getDataSetByIndex(indexLast);
+
+		if (lastSet == null) {
+			lastSet = createSet();
+			lineData.addDataSet(lastSet);
+		}
+		// 这里要注意，x轴的index是从零开始的
+		// 假设index=2，那么getEntryCount()就等于3了
+		int count = lineData.getDataSetByIndex(0).getEntryCount();//lastSet.getEntryCount();
+		// add a new x-value first 这行代码不能少
+//			lineData.addXValue(count + "");
+
+		// 位最后一个DataSet添加entry
+		for (float value : values) lineData.addEntry(new Entry(count++, value), 0);
+		lineData.notifyDataChanged();
+	}
+
+	private void initSpectrumChart() {
+		// 图表的文本描述
+		spectrumChart.getDescription().setEnabled(false);
+		spectrumChart.setNoDataText(getResources().getString(R.string.no_spectrum_data_available));
+		spectrumChart.getLegend().setEnabled(false);
+
+		// 添加监听器
+//		spectrumChart.setOnChartValueSelectedListener(this);
+//		spectrumChart.setDrawGridBackground(false);
+
+		// 设置拖拽、缩放等
+//		spectrumChart.setDragEnabled(true);
+//		spectrumChart.setScaleEnabled(true);
+		spectrumChart.setScaleXEnabled(false);
+		spectrumChart.setScaleYEnabled(false);
+//		spectrumChart.setPinchZoom(true);// 设置双指缩放
+//		spectrumChart.setDragDecelerationEnabled(true);
+
+		// 获取 Y 轴
+		spectrumChart.getAxisRight().setEnabled(false);
+		spectrumChart.getAxisLeft().setAxisMinimum(Y_MIN);
+		spectrumChart.getAxisLeft().setAxisMaximum(Y_MAX);
+		spectrumChart.getXAxis().setAxisMinimum(X_MIN);
+		spectrumChart.getXAxis().setAxisMaximum(SPECTRUM_X_MAX);
+//		spectrumChart.getXAxis().setLabelCount(10);
+		spectrumChart.setVisibleXRangeMinimum(X_VIEW_MIN);
+		spectrumChart.setVisibleXRangeMaximum(SPECTRUM_X_MAX);
+
+		// 初始化空列表
+		for (int i = 0; i < X_VIEW_MAX * 2; i++) spectrumValues.add(new Entry(i / 2.0f, 0));
+	}
+
+	/*private void addSpectrumEntry(int index, float... values) {
+		if (spectrumChart.getData() == null) {
+			spectrumChart.setData(new LineData());
+			spectrumChart.invalidate();
+		}
+		LineData lineData = spectrumChart.getData();
 		if (lineData != null) {
-			int indexLast = lineData.getEntryCount();
 			ILineDataSet lastSet = lineData.getDataSetByIndex(0);//lineData.getDataSetByIndex(indexLast);
-			// set.addEntry(...); // can be called as well
 
 			if (lastSet == null) {
-				lastSet = createSet();
+				lastSet = createSpectrumSet();
 				lineData.addDataSet(lastSet);
 			}
 			// 这里要注意，x轴的index是从零开始的
 			// 假设index=2，那么getEntryCount()就等于3了
-			int count = lineData.getDataSetByIndex(0).getEntryCount();//lastSet.getEntryCount();
+//			int count = lineData.getDataSetByIndex(0).getEntryCount();//lastSet.getEntryCount();
 			// add a new x-value first 这行代码不能少
 //			lineData.addXValue(count + "");
 
 			// 位最后一个DataSet添加entry
-//			Log.d("addEntry", String.format("count = %d, value = %f, dataSetIndex = %d", count, value, indexLast));
-			lineData.addEntry(new Entry(count, value), 0);
+			for (float value : values) {
+				if (index > X_VIEW_MAX) break;
+				lineData.removeEntry(index, 0);
+				lineData.addEntry(new Entry(index++, value), 0);
+			}
 			lineData.notifyDataChanged();
-//			Log.d("TAG", "set.getEntryCount()=" + lastSet.getEntryCount() + " ; indexLastDataSet=" + indexLast);
 		}
-	}
-
-	/*private float left = 0;
-	private float right = 0;
-	private float width = 100;
-	private void refreshViewport_before() {
-		if (lineChart.getData() == null) return;
-		left = lineChart.getLowestVisibleX();
-		right = lineChart.getHighestVisibleX();
-		width = right - left;
 	}*/
+
+	List<Entry> spectrumValues = new ArrayList<>();
+	private void addSpectrumEntry(int index, float... values) {
+		if (spectrumChart.getData() == null) {
+			spectrumChart.setData(new LineData());
+			spectrumChart.invalidate();
+		}
+		LineData lineData = spectrumChart.getData();
+		if (lineData == null) return;
+
+		for (int i = 0, j = index; i < values.length && j <= X_VIEW_MAX ; i++, j++)
+			spectrumValues.set(j * 2, new Entry(j, values[i]));
+		lineData.removeDataSet(0);
+		LineDataSet lastSet = createSpectrumSet(spectrumValues);
+		lineData.addDataSet(lastSet);
+	}
 
 	private void refreshViewport() {
-		LineData lineData = lineChart.getData();
+		LineData lineData = waveChart.getData();
 		if (lineData == null) return;
-		lineChart.notifyDataSetChanged();
-		final float left = lineChart.getLowestVisibleX(),
-				right = lineChart.getHighestVisibleX(),
-				width = right - left;/*,
-				scale = lineChart.getScaleX();
-		Log.d("scale", String.valueOf(scale));*/
-		//mChart.setVisibleYRangeMaximum(15, AxisDependency.LEFT);
-		// this automatically refreshes the chart (calls invalidate())
-//		Log.d("refreshViewport", String.format("left: %f, right: %f", left, right));
+		waveChart.notifyDataSetChanged();
+		spectrumChart.notifyDataSetChanged();
+		spectrumChart.invalidate();
+		final float right = waveChart.getHighestVisibleX();
 		final int last = lineData.getEntryCount();
-//		Log.d("last", String.valueOf(last));
-//		Log.d("last&right", String.format("last:%d,right%f",last,right));
-		if (last > right) {
-			lineChart.moveViewTo(last, 50f, YAxis.AxisDependency.LEFT);
-//			lineChart.moveViewTo(last);
-//			lineChart.setVisibleXRange(last - width, last);
-//			lineChart.setScaleX(scale);
-//			lineChart.zoom(1,1,last,50f);
-//			Log.d("scale1", String.valueOf(lineChart.getScaleX()));
-		}
+//		if (last <= 100) waveChart.setVisibleXRange(0, last);
+//		else
+		if (last > right) waveChart.moveViewTo(last, 50f, YAxis.AxisDependency.LEFT);
 	}
-
-	/*private Viewport refreshViewport(float left, float right, float top, float bottom) {
-		Viewport viewport = new Viewport();
-		viewport.left = left;
-		viewport.right = right;
-		viewport.top = top;
-		viewport.bottom = bottom;
-		return viewport;
-	}*/
 
 	public void receiveText(String text) {
 		if (text.isEmpty()) return;
-		final String START_CODE = "add 1,0,";
+		final String START_CODE = "audio ";
 		final String[] lines = text.split("\\n");
-//		refreshViewport_before();
-		boolean scaleFlag = lineChart.getData() != null;
-		final float previousCount = scaleFlag ? lineChart.getData().getEntryCount() : 0;
-//		Log.d("scale1", String.valueOf(lineChart.getScaleX()));
-//		Log.d("scale2", String.valueOf(scale));
+		boolean scaleFlag = waveChart.getData() != null;
+		final float previousCount = scaleFlag ? waveChart.getData().getEntryCount() : 0;
 		for (String line : lines) {
 			if (!(line = line.trim()).startsWith(START_CODE)) continue;
 			line = line.substring(START_CODE.length()).trim();
-			int value;
-			try {
-				value = Integer.parseInt(line);
-			} catch (NumberFormatException e) {
-				Log.d("NaN", line);
-				continue;
+			final String WAVE_CODE = "wave ", SPECTRUM_CODE = "spec ", INFO_CODE = "info ";
+			if (line.startsWith(INFO_CODE)) {
+				line = line.substring(INFO_CODE.length()).trim();
+				readInfo(line.split(","));
+			} else if (line.startsWith(WAVE_CODE)) {
+				line = line.substring(WAVE_CODE.length()).trim();
+				addEntry(stringSequence2numberArray(line, ","));
+			} else if (line.startsWith(SPECTRUM_CODE)) {
+				line = line.substring(SPECTRUM_CODE.length()).trim();
+				String[] splits = splitOnce(line, ',');
+				int index;
+				try {
+					index = Integer.parseInt(splits[0]);
+				} catch (NumberFormatException e) {
+					Log.d("NaN", line);
+					continue;
+				}
+				addSpectrumEntry(index, stringSequence2numberArray(splits[1], ","));
 			}
-			addPoint(value);
 		}
+		LineData lineData = waveChart.getData();
+		if (lineData == null) return;
 		refreshViewport();
-		if (scaleFlag) lineChart.zoom(lineChart.getData().getEntryCount() / previousCount, 1, 0, 50);
-//		Log.d("scale3", String.valueOf(lineChart.getScaleX()));
+		if (scaleFlag && lineData.getEntryCount() > 100) waveChart.zoom(lineData.getEntryCount() / previousCount, 1, 0, 50);
+	}
+
+	private void readInfo(String[] info) {
+		if (info == null) return; // throw new NullPointerException("info 为空");
+//		if (binding == null) throw new NullPointerException("binding 为空");
+		final int length = Math.min(info.length, textViews.length);
+		NumberFormat digitFormat = NumberFormat.getNumberInstance();
+		digitFormat.setMinimumFractionDigits(3);
+		for (int i = 0; i < length; i++) {
+			String item = info[i];
+			if (i <= 6) { // 给 THD 和 Um1 ~ Um5 全部除以 1000
+				try {
+					double item_double = Double.parseDouble(item);
+					item_double /= 1000;
+					item = digitFormat.format(item_double);
+				} catch (NumberFormatException ignored) { }
+			}
+			textViews[i].setText(item);
+		}
 	}
 
 	public void clearChart() {
-		lineChart.clear();
-		setText("");
-	}
-
-	@SuppressLint("SetTextI18n")
-	@Override
-	public void onValueSelected(Entry e, Highlight h) {
-		Log.d("onValueSelected", e.toString());
-		setText(e.getY(), _Color.CYAN);
-	}
-
-	@Override
-	public void onNothingSelected() {
-		setText(lastValue, _Color.GREY);
-	}
-
-	private enum _Color {
-		GREY,
-		CYAN
-	}
-
-	private void setText(String text, _Color color) {
-		chartValue.setText(text);
-		chartValue.setTextColor(mainAct().getThemeColor(color == _Color.CYAN ? R.attr.colorSecondaryVariant : R.attr.textColorSecondary));
-	}
-
-	private void setText(int text, _Color color) {
-		setText(Integer.toString(text), color);
-	}
-
-	private void setText(float text, _Color color) {
-		setText(Float.toString(text), color);
-	}
-
-	private void setText(String text) {
-		setText(text, _Color.GREY);
+		waveChart.clear();
+		spectrumChart.clear();
+		for (TextView textView : textViews) textView.setText("");
 	}
 
 	private LineDataSet createSet() {
 		LineDataSet set = new LineDataSet(null, getResources().getString(R.string.waveform_dataset) + " 0");
 		set.setLineWidth(2.5f); // 线宽
 		set.setDrawCircles(false); // 隐藏圆圈
-//		set.setCircleRadius(4.5f);
 		set.setColor(mainAct().getThemeColor(R.attr.colorPrimary)); // 线条颜色
-//		set.setCircleColor(Color.rgb(240, 99, 99));
 		set.setHighLightColor(Color.rgb(190, 190, 190));
 		set.setAxisDependency(YAxis.AxisDependency.LEFT);
 		set.setDrawValues(false);
-//		set.setValueTextSize(10f);
 		set.setMode(LineDataSet.Mode.CUBIC_BEZIER); // 开启三次平滑曲线
-//		set.setCubicIntensity(0.2f);
 		return set;
+	}
+
+	private LineDataSet createSpectrumSet(List<Entry> yValues) {
+		LineDataSet set = new LineDataSet(yValues, getResources().getString(R.string.spectrum_dataset) + " 0");
+		set.setLineWidth(2.5f); // 线宽
+		set.setDrawCircles(false); // 隐藏圆圈
+		set.setColor(mainAct().getThemeColor(R.attr.colorPrimary)); // 线条颜色
+		set.setHighLightColor(Color.rgb(190, 190, 190));
+		set.setAxisDependency(YAxis.AxisDependency.LEFT);
+		set.setDrawValues(false);
+		set.setDrawFilled(true);
+//		set.setFillDrawable(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,
+//				new int[] {Color.argb(230, 204, 232, 255), Color.argb(120, 204, 232, 255)}));
+//		set.setFillColor(Color.rgb(204, 232, 255));
+		set.setFillColor(mainAct().getThemeColor(R.attr.colorPrimary));
+		set.setFillAlpha(85);
+		return set;
+	}
+
+	public static float[] stringSequence2numberArray(@NonNull String stringSequence, String sep) {
+		String[] strings = stringSequence.split(sep);
+		float[] floats = new float[strings.length];
+		for (int i = 0; i < strings.length; i++) {
+			float value;
+			try {
+				value = Integer.parseInt(strings[i]) * Y_MAX / Y_MAX_CODE;
+			} catch (NumberFormatException e) {
+				Log.d("NaN", strings[i]);
+				value = i == 0 ? 0 : floats[i - 1];
+			}
+			floats[i] = value;
+		}
+		return floats;
+	}
+
+	public static String[] splitOnce(@NonNull String string, char sep) {
+		int firstSepPos = string.indexOf(sep);
+		String[] splits = new String[2];
+		splits[0] = string.substring(0, firstSepPos);
+		if (firstSepPos + 1 < string.length()) splits[1] = string.substring(firstSepPos + 1);
+		return splits;
 	}
 }

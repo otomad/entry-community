@@ -40,4 +40,19 @@
 	<string name="uncaught_wifi_connect">Not Connected to WLAN</string>
 	<string name="uncaught_wifi_connect_info">Not currently connected to WLAN. Please try to connect and use this app. Do you want to connect now?</string>
 	<string name="to_connect">To Connect</string>
+	<string name="test_a">Test A: Distortion</string>
+	<string name="measure_signal_frequency">Measure Signal Frequency</string>
+	<string name="thd">THD</string>
+	<string name="um1">Um1</string>
+	<string name="um2">Um2=Um2/Um1</string>
+	<string name="um3">Um3=Um3/Um1</string>
+	<string name="um4">Um4=Um4/Um1</string>
+	<string name="um5">Um5=Um5/Um1</string>
+	<string name="hz" translatable="false">kHz</string>
+	<string name="percent" translatable="false">%</string>
+	<string name="mvpp" translatable="false">mVpp</string>
+	<string name="spectrum_dataset">Sectrum Dataset</string>
+	<string name="no_wave_data_available">No wave data available</string>
+	<string name="no_spectrum_data_available">No spectrum data available</string>
+	<string name="entry">Entry</string>
 </resources>

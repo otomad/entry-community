@@ -3,20 +3,24 @@
 	<style name="Theme.Entry" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
 <!--Theme.MaterialComponents.DayNight.DarkActionBar-->
 		<!-- Primary brand color. -->
-		<item name="colorPrimary">@color/blue_500</item>
-		<item name="colorPrimaryVariant">@color/blue_500</item>
+		<item name="colorPrimary">#CE4138</item><!--@color/blue_500-->
+		<item name="colorPrimaryVariant">#CE4138</item><!--@color/blue_500-->
 		<item name="colorOnPrimary">@color/white</item>
 		<!-- Secondary brand color. -->
-		<item name="colorSecondary">@color/cyan_200</item>
-		<item name="colorSecondaryVariant">@color/cyan_700</item>
+		<item name="colorSecondary">#E28945</item><!--@color/cyan_200-->
+		<item name="colorSecondaryVariant">#E28945</item><!--@color/cyan_700-->
 		<item name="colorOnSecondary">@color/black</item>
 		<!-- Status bar color. -->
-		<item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+<!--		<item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>&lt;!&ndash;?attr/colorPrimaryVariant&ndash;&gt;-->
 		<!-- Customize your theme here. -->
-		<item name="statusBarBackground">@color/blue_500</item>
-<!--		<item name="android:windowTranslucentStatus">true</item>-->
+<!--		<item name="statusBarBackground">?attr/colorPrimary</item>&lt;!&ndash;?attr/colorPrimary&ndash;&gt;-->
+		<item name="android:windowTranslucentStatus">true</item>
 		<item name="android:windowAnimationStyle">@style/AnimationActivity</item>
 		<item name="android:windowActionBarOverlay">true</item>
+<!--		<item name="android:forceDarkAllowed" tools:targetApi="q">true</item>-->
+<!--		<item name="android:background">@color/black</item>-->
+<!--		<item name="android:textColor">@color/white</item>-->
+<!--		<item name="backgroundColor">#EAEBEF</item>-->
 		<!-- 失败和成功颜色 -->
 		<item name="colorError">@color/red_500</item>
 		<item name="colorSuccess">@color/green_500</item>
@@ -29,6 +33,9 @@
 		<item name="windowNoTitle">true</item>
 	</style>
 
+	<!--<style name="Theme.Entry.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar">
+		<item name="colorPrimary">#fafafa</item>&lt;!&ndash;@color/white&ndash;&gt;
+	</style>-->
 	<style name="Theme.Entry.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
 	<style name="Theme.Entry.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

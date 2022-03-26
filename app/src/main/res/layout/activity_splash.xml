@@ -7,22 +7,32 @@
 	android:background="@color/white"
 	tools:context=".SplashActivity">
 
-	<VideoView
-		android:id="@+id/videoView"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
+	<ImageView
+		android:id="@+id/nuedc_logo"
+		android:layout_width="270dp"
+		android:layout_height="270dp"
+		android:layout_marginTop="30dp"
+		android:layout_marginBottom="70dp"
+		android:contentDescription="@string/test_description"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent" />
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_bias="0.3"
+		app:srcCompat="@drawable/edc_logo_full" />
 
-	<View
-		android:id="@+id/videoMask"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:background="@color/white"
+	<TextView
+		android:id="@+id/test_title"
+		android:layout_width="0dp"
+		android:layout_height="95dp"
+		android:layout_marginBottom="151dp"
+		android:singleLine="false"
+		android:text="@string/test_a"
+		android:textAlignment="center"
+		android:textColor="@color/design_default_color_on_secondary"
+		android:textSize="27sp"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent" />
+		app:layout_constraintTop_toBottomOf="@+id/nuedc_logo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

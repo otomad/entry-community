@@ -6,7 +6,8 @@
         android:checkable="true"
         android:checked="false"
         android:icon="@drawable/ic_baseline_screen_rotation_24"
-        android:title="@string/switch_to_landscape" />
+        android:title="@string/switch_to_landscape"
+        android:visible="false" />
     <item
         android:id="@+id/action_clrMsg"
         android:title="@string/clear_message"

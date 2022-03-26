@@ -43,6 +43,9 @@ import com.pb_408es.entry.ui.serialassistant.SerialAssistantFragment;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 	private AppBarConfiguration mAppBarConfiguration = null;
 	private ActivityMainBinding binding = null;
@@ -90,6 +93,11 @@ public class MainActivity extends AppCompatActivity {
 		getRandomBackgroundImage();
 		checkedWifiConnection();
 		pref = new _Pref();
+//		showHomeTrigger(false);
+	}
+
+	private void showHomeTrigger(boolean show) {
+		getSupportActionBar().setDisplayHomeAsUpEnabled(show);
 	}
 
 	/*private void onDestinationChanged(NavController controller, NavDestination destination, Bundle arguments) {
@@ -127,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
 		menu.findItem(R.id.action_clrMsg).setVisible(selected == R.id.nav_serial_assistant || selected == R.id.nav_oscilloscope);
 		menu.findItem(R.id.action_autoClrSend).setVisible(selected == R.id.nav_serial_assistant);
 		closeKeyboard();
+//		showHomeTrigger(false);
 		return true;
 	}
 
@@ -209,6 +218,7 @@ public class MainActivity extends AppCompatActivity {
 		MenuItem switchToLandscape = menu.findItem(R.id.switch_to_landscape);
 		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
 			switchToLandscape.setChecked(true);
+//		getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 		return true;
 	}
 
@@ -266,6 +276,9 @@ public class MainActivity extends AppCompatActivity {
 		toast(getResources().getString(resId));
 	}
 
+	/**
+	 * 测试是否走到这一步的函数
+	 */
 	public void test() { // 测试是否走到这一步的函数
 		toast(R.string.test_step);
 	}
@@ -275,10 +288,9 @@ public class MainActivity extends AppCompatActivity {
 		super.onConfigurationChanged(newConfig);
 		MenuItem switchToLandscape = menu.findItem(R.id.switch_to_landscape);
 		// 检测屏幕的方向：纵向或横向
-		if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {//当前为横屏， 在此处添加额外的处理代码
+		if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {//当前为横屏，在此处添加额外的处理代码
 			switchToLandscape.setChecked(true);
-		}
-		else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {//当前为竖屏， 在此处添加额外的处理代码
+		} else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {//当前为竖屏，在此处添加额外的处理代码
 			switchToLandscape.setChecked(false);
 		}
 	}
@@ -289,18 +301,26 @@ public class MainActivity extends AppCompatActivity {
 		overridePendingTransition(R.anim.zoom_close_in, R.anim.zoom_close_out);
 	}
 
+	private Menu getNavMenu() {
+		return binding.navView.getMenu();
+	}
+
 	@Override
 	public void onBackPressed() {
-		Menu navMenu = binding.navView.getMenu();
 		final int HOME = R.id.nav_home;
-		MenuItem homeItem = navMenu.findItem(HOME);
+		MenuItem homeItem = getNavMenu().findItem(HOME);
 		if (currentNavigateItem != HOME) onNavigationItemSelected(homeItem);
 		else exit();
 	}
 
+	public void entryToOscilloscope() {
+		final int OSCILLOSCOPE = R.id.nav_oscilloscope;
+		MenuItem item = getNavMenu().findItem(OSCILLOSCOPE);
+		onNavigationItemSelected(item);
+	}
+
 	private static boolean isExit = false;
 	private void exit() {
-//		final int DELAY = 2000;
 		if (!isExit) {
 			isExit = true;
 			toast(R.string.press_again_to_exit);
@@ -315,11 +335,11 @@ public class MainActivity extends AppCompatActivity {
 		}
 	}
 
-	/**
-	 * 导航到各个页面并处理相关操作
-	 * @param navId 要导航去的地方的 ID
-	 */
-	public void navigate(int navId) {}
+//	/**
+//	 * 导航到各个页面并处理相关操作
+//	 * @param navId 要导航去的地方的 ID
+//	 */
+//	public void navigate(int navId) {}
 
 	/**
 	 * 关闭软键盘
@@ -369,8 +389,8 @@ public class MainActivity extends AppCompatActivity {
 		final ImageView originalImage = binding.appBarMain.appBarImage,
 				prettyImage = binding.appBarMain.appBarImageSecondary;
 		final String originalAffix = "_original", prettyAffix = "_pretty";
-		final String[] picNames = {"tjb", "zqh", "yxw"};
-		String randomPicName = picNames[randomBetween(0, picNames.length - 1)];
+		final List<String> picNames = Arrays.asList("background_b");
+		String randomPicName = picNames.get(randomBetween(0, picNames.size() - 1));
 		int originalImageId = getResources().getIdentifier(randomPicName + originalAffix, "drawable", getPackageName()),
 			prettyImageId = getResources().getIdentifier(randomPicName + prettyAffix, "drawable", getPackageName());
 		originalImage.setImageResource(originalImageId);
@@ -394,9 +414,7 @@ public class MainActivity extends AppCompatActivity {
 		AlertDialog alert = builder.setTitle(R.string.uncaught_wifi_connect)
 				.setMessage(R.string.uncaught_wifi_connect_info)
 				.setNegativeButton(R.string.button_cancel, null)
-				.setPositiveButton(R.string.to_connect, (dialogInterface, i) -> {
-					startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
-				})
+				.setPositiveButton(R.string.to_connect, (dialogInterface, i) -> startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS)))
 				.create();
 		alert.show();
 	}

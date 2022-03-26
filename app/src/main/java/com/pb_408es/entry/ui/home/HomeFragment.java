@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.RadioButton;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -117,12 +116,9 @@ public class HomeFragment extends Fragment {
 				isChanging = false;
 			}
 		});
-		binding.navHomeLayout.post(new Runnable() {
-			@Override
-			public void run() {
-				mainAct().pref.read(); // 加载用户配置数据
-			}
-		});
+		binding.entryBtn.setOnClickListener(view -> mainAct().entryToOscilloscope());
+		binding.loginFloatingActionButton.setOnClickListener(view -> mainAct().entryToOscilloscope());
+		binding.navHomeLayout.post(() -> mainAct().pref.read()); // 加载用户配置数据
 		return rootView = root;
 	}
 
@@ -171,10 +167,10 @@ public class HomeFragment extends Fragment {
 
 	public final boolean ENABLED_AS_LAN_SERVER = false;
 	public void setEnabled(boolean enabled) {
-		((RadioButton)rootView.findViewById(R.id.as_server_radio)).setEnabled(enabled && ENABLED_AS_LAN_SERVER);
-		((RadioButton)rootView.findViewById(R.id.as_client_radio)).setEnabled(enabled);
-		((EditText)rootView.findViewById(R.id.server_ip_address_text)).setEnabled(enabled);
-		((EditText)rootView.findViewById(R.id.server_port_text)).setEnabled(enabled);
+		rootView.findViewById(R.id.as_server_radio).setEnabled(enabled && ENABLED_AS_LAN_SERVER);
+		rootView.findViewById(R.id.as_client_radio).setEnabled(enabled);
+		rootView.findViewById(R.id.server_ip_address_text).setEnabled(enabled);
+		rootView.findViewById(R.id.server_port_text).setEnabled(enabled);
 //		binding.asServerRadio.setEnabled(enabled && ENABLED_AS_LAN_SERVER);
 //		binding.asClientRadio.setEnabled(enabled);
 //		binding.serverIpAddressText.setEnabled(enabled);

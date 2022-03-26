@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<!-- Other values-->
+	<!-- Other values -->
 	<attr name="sendBarBgColor" format="reference" />
 	<attr name="colorSuccess" format="reference" />
 	<attr name="textColorSecondary" format="reference" />

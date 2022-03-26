@@ -9,9 +9,14 @@
 
 
 	<androidx.core.widget.NestedScrollView
+		android:id="@+id/nestedScrollView"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:fillViewport="true">
+		android:fillViewport="true"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent">
 
 		<LinearLayout
 			android:layout_width="match_parent"
@@ -33,13 +38,15 @@
 				android:id="@+id/divider"
 				android:layout_width="match_parent"
 				android:layout_height="1dp"
-				android:background="?android:attr/listDivider" />
+				android:background="?android:attr/listDivider"
+				android:visibility="gone" />
 
 			<RadioGroup
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginTop="@dimen/nav_header_vertical_spacing"
-				android:layout_marginBottom="@dimen/nav_header_vertical_spacing">
+				android:layout_marginBottom="@dimen/nav_header_vertical_spacing"
+				android:visibility="gone">
 
 				<RadioButton
 					android:id="@+id/as_server_radio"
@@ -48,7 +55,8 @@
 					android:enabled="false"
 					android:text="@string/lan_as_server_label"
 					android:textAlignment="viewStart"
-					android:translationZ="10dp" />
+					android:translationZ="10dp"
+					android:visibility="gone" />
 
 				<RadioButton
 					android:id="@+id/as_client_radio"
@@ -56,7 +64,6 @@
 					android:layout_height="wrap_content"
 					android:checked="true"
 					android:text="@string/lan_as_client_label"
-					android:textAlignment="viewStart"
 					android:translationZ="10dp" />
 
 			</RadioGroup>
@@ -65,7 +72,8 @@
 				android:id="@+id/divider2"
 				android:layout_width="match_parent"
 				android:layout_height="1dp"
-				android:background="?android:attr/listDivider" />
+				android:background="?android:attr/listDivider"
+				android:visibility="gone" />
 
 			<TextView
 				android:id="@+id/server_ip_address_caption"
@@ -103,6 +111,65 @@
 				android:inputType="number|textAutoComplete"
 				android:textAlignment="viewStart" />
 
+			<TableLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:stretchColumns="1">
+
+				<TableRow
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:baselineAligned="false">
+
+				</TableRow>
+
+				<TableRow
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:baselineAligned="false">
+
+				</TableRow>
+
+			</TableLayout>
+
+			<Button
+				android:id="@+id/entryBtn"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/entry"
+				android:visibility="gone" />
+
 		</LinearLayout>
 	</androidx.core.widget.NestedScrollView>
+
+	<com.google.android.material.floatingactionbutton.FloatingActionButton
+		android:id="@+id/loginFloatingActionButton"
+		android:layout_width="wrap_content"
+		android:layout_height="0dp"
+		android:layout_marginStart="15dp"
+		android:layout_marginEnd="15dp"
+		android:layout_marginBottom="90dp"
+		android:clickable="true"
+		android:contentDescription="Entry"
+		android:focusable="true"
+		android:visibility="gone"
+		app:backgroundTint="#471404"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toStartOf="@+id/nestedScrollView"
+		app:layout_constraintStart_toEndOf="@+id/nestedScrollView"
+		app:srcCompat="@drawable/ic_baseline_emoji_events_24"
+		app:tint="@color/gold"
+		tools:ignore="HardcodedText" />
+
+	<!--<com.google.android.material.floatingactionbutton.FloatingActionButton
+		android:id="@+id/connectLanBtn"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="bottom|end"
+		android:layout_margin="@dimen/fab_margin"
+		android:contentDescription="@string/start_connect"
+		android:translationZ="20dp"
+		app:backgroundTint="@color/blue_900"
+		app:srcCompat="@drawable/ic_baseline_link_off_24"
+		app:tint="@color/gold" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>

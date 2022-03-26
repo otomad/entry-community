@@ -2,50 +2,278 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/chart_const_layout"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context=".ui.oscilloscope.OscilloscopeFragment"
-	android:id="@+id/chart_const_layout">
+	tools:context=".ui.oscilloscope.OscilloscopeFragment">
 
 	<androidx.core.widget.NestedScrollView
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:fillViewport="true">
+		android:id="@+id/nestedScrollView2"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:fillViewport="true"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent">
 
 		<LinearLayout
-			android:id="@+id/chart_layout"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="vertical">
+			android:layout_height="match_parent"
+			android:baselineAligned="false"
+			android:orientation="horizontal">
 
-			<!--<TextView
-				android:id="@+id/text_slideshow"
+			<LinearLayout
+				android:id="@+id/chart_layout"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginStart="8dp"
-				android:layout_marginTop="8dp"
-				android:layout_marginEnd="8dp"
-				android:textAlignment="center"
-				android:textSize="20sp"
-				app:layout_constraintStart_toStartOf="parent"
-				app:layout_constraintTop_toTopOf="parent" />-->
-			<TextView
-				android:id="@+id/chart_value"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_margin="@dimen/nav_header_vertical_spacing"
-				android:textAlignment="center"
-				android:textColor="?attr/textColorSecondary"
-				android:textSize="20sp" />
+				android:layout_height="match_parent"
+				android:layout_weight="1"
+				android:orientation="vertical">
 
-			<!--<lecho.lib.hellocharts.view.LineChartView
-				android:id="@+id/line_chart"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent" />-->
-			<com.github.mikephil.charting.charts.LineChart
-				android:id="@+id/line_chart"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent" />
+				<TableLayout
+					android:id="@+id/info_table"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="@dimen/nav_header_vertical_spacing"
+					android:stretchColumns="1">
+
+					<TableRow
+						android:layout_width="match_parent"
+						android:layout_height="match_parent">
+
+						<TextView
+							android:id="@+id/fmsLbl"
+							android:layout_height="wrap_content"
+							android:text="@string/measure_signal_frequency"
+							android:textAlignment="textEnd" />
+
+						<TextView
+							android:id="@+id/fms"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginLeft="2pt"
+							android:layout_marginRight="2pt"
+							android:text=""
+							android:textAlignment="textEnd" />
+
+						<TextView
+							android:id="@+id/fmsUnt"
+							android:layout_height="wrap_content"
+							android:text="@string/hz" />
+
+					</TableRow>
+
+					<TableRow
+						android:layout_width="match_parent"
+						android:layout_height="match_parent">
+
+						<TextView
+							android:id="@+id/thdLbl"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="@string/thd"
+							android:textAlignment="textEnd" />
+
+						<TextView
+							android:id="@+id/thd"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginLeft="2pt"
+							android:layout_marginRight="2pt"
+							android:text=""
+							android:textAlignment="textEnd" />
+
+						<TextView
+							android:id="@+id/thdUnt"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="@string/percent" />
+					</TableRow>
+
+					<TableRow
+						android:layout_width="match_parent"
+						android:layout_height="match_parent">
+
+						<TextView
+							android:id="@+id/um1Lbl"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="@string/um1"
+							android:textAlignment="textEnd" />
+
+						<TextView
+							android:id="@+id/um1"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginLeft="2pt"
+							android:layout_marginRight="2pt"
+							android:text=""
+							android:textAlignment="textEnd" />
+
+						<TextView
+							android:id="@+id/um1Unt"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="@string/mvpp"
+							android:visibility="gone" />
+					</TableRow>
+
+					<TableRow
+						android:layout_width="match_parent"
+						android:layout_height="match_parent">
+
+						<TextView
+							android:id="@+id/um2Lbl"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="@string/um2"
+							android:textAlignment="textEnd" />
+
+						<TextView
+							android:id="@+id/um2"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginLeft="2pt"
+							android:layout_marginRight="2pt"
+							android:text=""
+							android:textAlignment="textEnd" />
+
+						<TextView
+							android:id="@+id/um2Unt"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="@string/mvpp"
+							android:visibility="gone" />
+					</TableRow>
+
+					<TableRow
+						android:layout_width="match_parent"
+						android:layout_height="match_parent">
+
+						<TextView
+							android:id="@+id/um3Lbl"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="@string/um3"
+							android:textAlignment="textEnd" />
+
+						<TextView
+							android:id="@+id/um3"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginLeft="2pt"
+							android:layout_marginRight="2pt"
+							android:text=""
+							android:textAlignment="textEnd" />
+
+						<TextView
+							android:id="@+id/um3Unt"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="@string/mvpp"
+							android:visibility="gone" />
+					</TableRow>
+
+					<TableRow
+						android:layout_width="match_parent"
+						android:layout_height="match_parent">
+
+						<TextView
+							android:id="@+id/um4Lbl"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="@string/um4"
+							android:textAlignment="textEnd" />
+
+						<TextView
+							android:id="@+id/um4"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginLeft="2pt"
+							android:layout_marginRight="2pt"
+							android:text=""
+							android:textAlignment="textEnd" />
+
+						<TextView
+							android:id="@+id/um4Unt"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="@string/mvpp"
+							android:visibility="gone" />
+					</TableRow>
+
+					<TableRow
+						android:layout_width="match_parent"
+						android:layout_height="match_parent">
+
+						<TextView
+							android:id="@+id/um5Lbl"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="@string/um5"
+							android:textAlignment="textEnd" />
+
+						<TextView
+							android:id="@+id/um5"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginLeft="2pt"
+							android:layout_marginRight="2pt"
+							android:text=""
+							android:textAlignment="textEnd" />
+
+						<TextView
+							android:id="@+id/um5Unt"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="@string/mvpp"
+							android:visibility="gone" />
+					</TableRow>
+
+				</TableLayout>
+
+				<com.github.mikephil.charting.charts.LineChart
+					android:id="@+id/wave_chart"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_weight="1">
+
+				</com.github.mikephil.charting.charts.LineChart>
+
+				<View
+					android:id="@+id/divider3"
+					android:layout_width="match_parent"
+					android:layout_height="1dp"
+					android:background="?android:attr/listDivider"
+					android:visibility="gone" />
+
+				<com.github.mikephil.charting.charts.LineChart
+					android:id="@+id/spectrum_chart"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_weight="1"
+					android:visibility="gone">
+
+				</com.github.mikephil.charting.charts.LineChart>
+
+				<View
+					android:id="@+id/divider4"
+					android:layout_width="match_parent"
+					android:layout_height="1dp"
+					android:background="?android:attr/listDivider"
+					android:visibility="gone" />
+
+				<ImageView
+					android:id="@+id/figureImage"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:adjustViewBounds="true"
+					android:scaleType="fitXY"
+					android:src="@drawable/stars"
+					android:visibility="gone" />
+
+			</LinearLayout>
+
 		</LinearLayout>
 	</androidx.core.widget.NestedScrollView>
 
