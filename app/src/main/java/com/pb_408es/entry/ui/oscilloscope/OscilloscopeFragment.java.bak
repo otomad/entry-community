@@ -1,0 +1,184 @@
+package com.pb_408es.entry.ui.oscilloscope;
+
+import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.pb_408es.entry.MainActivity;
+import com.pb_408es.entry.databinding.FragmentOscilloscopeBinding;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import lecho.lib.hellocharts.gesture.ContainerScrollType;
+import lecho.lib.hellocharts.gesture.ZoomType;
+import lecho.lib.hellocharts.model.Axis;
+import lecho.lib.hellocharts.model.AxisValue;
+import lecho.lib.hellocharts.model.Line;
+import lecho.lib.hellocharts.model.LineChartData;
+import lecho.lib.hellocharts.model.PointValue;
+import lecho.lib.hellocharts.model.ValueShape;
+import lecho.lib.hellocharts.model.Viewport;
+import lecho.lib.hellocharts.view.LineChartView;
+
+public class OscilloscopeFragment extends Fragment {
+
+	private OscilloscopeViewModel oscilloscopeViewModel;
+	private FragmentOscilloscopeBinding binding;
+	@SuppressLint("StaticFieldLeak")
+	private static View rootView;
+
+	private static MainActivity mainAct() {
+		return MainActivity.mainActivity;
+	}
+
+	private TextView chartValue = null;
+	private LineChartView lineChart = null;
+	private final List<PointValue> pointValues = new ArrayList<>();
+	private final List<AxisValue> axisValues = new ArrayList<>();
+	private final List<Line> lines = new ArrayList<>();
+	LineChartData data = new LineChartData();
+
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		if (rootView != null) { // 单例化
+			ViewGroup parent = (ViewGroup) rootView.getParent();
+			if (parent != null) parent.removeView(rootView);
+			return rootView;
+		}
+		mainAct().fragments.scope = this;
+		oscilloscopeViewModel = new ViewModelProvider(this).get(OscilloscopeViewModel.class);
+		binding = FragmentOscilloscopeBinding.inflate(inflater, container, false);
+		View root = binding.getRoot();
+		/*final TextView textView = binding.textSlideshow;
+		oscilloscopeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+			@Override
+			public void onChanged(@Nullable String s) {
+				textView.setText(s);
+			}
+		});*/
+
+		chartValue = binding.chartValue;
+//		lineChart = binding.lineChart;
+		lineChart = new LineChartView(root.getContext());
+		binding.chartConstLayout.addView(lineChart);
+		initLineChart();
+		return rootView = root;
+	}
+
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+		binding = null;
+	}
+
+	public void addPoint(int value) {
+		chartValue.setText(String.valueOf(chartValue));
+		drawNewPoint(value);
+		Log.d("point size:", Integer.toString(pointValues.size()));
+		Log.d("axis size:", Integer.toString(axisValues.size()));
+	}
+
+	private void initLineChart() {
+//		Line line = new Line(mPointValues).setColor(Color.parseColor("#FFCD41")); //折线的颜色（橙色）
+//		List<Line> lines = new ArrayList<Line>();
+//		line.setShape(ValueShape.CIRCLE);//折线图上每个数据点的形状  这里是圆形 （有三种 ：ValueShape.SQUARE  ValueShape.CIRCLE  ValueShape.DIAMOND）
+//		line.setCubic(true);//曲线是否平滑，即是曲线还是折线
+//		line.setFilled(false);//是否填充曲线的面积
+//		line.setHasLabels(false);//曲线的数据坐标是否加上备注
+////      line.setHasLabelsOnlyForSelected(true);//点击数据坐标提示数据（设置了这个line.setHasLabels(true);就无效）
+//		line.setHasLines(true);//是否用线显示。如果为false 则没有曲线只有点显示
+//		line.setHasPoints(false);//是否显示圆点 如果为false 则没有原点只有点显示（每个数据点都是个大的圆点）
+//		lines.add(line);
+//		LineChartData data = new LineChartData();
+//		data.setLines(lines);
+
+		//坐标轴
+		Axis axisX = new Axis(); //X轴
+		axisX.setHasTiltedLabels(true);  //X坐标轴字体是斜的显示还是直的，true是斜的显示
+		axisX.setTextColor(Color.GRAY);  //设置字体颜色
+		//axisX.setName("date");  //表格名称
+		axisX.setTextSize(10);//设置字体大小
+		axisX.setMaxLabelChars(8); //最多几个X轴坐标，意思就是你的缩放让X轴上数据的个数 7<=x<=mAxisXValues.length
+		data.setAxisXBottom(axisX); //x 轴在底部
+		//data.setAxisXTop(axisX);  //x 轴在顶部
+		//axisX.setHasLines(true); //x 轴分割线
+
+		// Y轴是根据数据的大小自动设置Y轴上限(在下面我会给出固定Y轴数据个数的解决方案)
+		Axis axisY = new Axis();  //Y轴
+//		axisY.setName("");//y轴标注
+		axisY.setTextSize(10);//设置字体大小
+		data.setAxisYLeft(axisY);  //Y轴设置在左边
+		//data.setAxisYRight(axisY);  //y轴设置在右边
+
+		//设置行为属性，支持缩放、滑动以及平移
+		lineChart.setInteractive(true);
+		lineChart.setZoomType(ZoomType.HORIZONTAL);
+//		lineChart.setMaxZoom((float) 2);//最大方法比例
+		lineChart.setContainerScrollEnabled(true, ContainerScrollType.HORIZONTAL);
+//		lineChart.setLineChartData(data);
+		lineChart.setVisibility(View.VISIBLE);
+		/* 注：下面的7，10只是代表一个数字去类比而已
+		 * 当时是为了解决X轴固定数据个数。见（http://forum.xda-developers.com/tools/programming/library-hellocharts-charting-library-t2904456/page2）;
+		 */
+		/*Viewport v = new Viewport(lineChart.getMaximumViewport());
+		v.left = 0;
+		v.right = 7;
+		lineChart.setCurrentViewport(v);*/
+	}
+
+	private void drawNewPoint(float value) {
+		axisValues.add(new AxisValue(axisValues.size() + 1).setLabel(Integer.toString(axisValues.size() + 1)));
+		pointValues.add(new PointValue(pointValues.size() + 1, (int) value));
+		Line line = new Line(pointValues).setColor(Color.BLUE);
+		line.setShape(ValueShape.CIRCLE);//折线图上每个数据点的形状  这里是圆形 （有三种 ：ValueShape.SQUARE  ValueShape.CIRCLE  ValueShape.DIAMOND）
+		line.setCubic(true);//曲线是否平滑，即是曲线还是折线
+		line.setFilled(false);//是否填充曲线的面积
+		line.setHasLabels(false);//曲线的数据坐标是否加上备注
+		line.setHasLines(true);//是否用线显示。如果为false 则没有曲线只有点显示
+		line.setHasPoints(false);//是否显示圆点 如果为false 则没有原点只有点显示（每个数据点都是个大的圆点）
+		lines.add(line);
+		data.setLines(lines);
+		lineChart.setLineChartData(data);
+		lineChart.setZoomType(ZoomType.HORIZONTAL);
+		int x = axisValues.size();
+		Log.d("x-------->", Integer.toString(x));
+		if (x > 20) {
+			lineChart.setCurrentViewport(refreshViewport(x - 20, x, lineChart.getMaximumViewport().height(), 0));
+		}
+	}
+
+	private Viewport refreshViewport(float left, float right, float top, float bottom) {
+		Viewport viewport = new Viewport();
+		viewport.left = left;
+		viewport.right = right;
+		viewport.top = top;
+		viewport.bottom = bottom;
+		return viewport;
+	}
+
+	public void receiveText(String text) {
+		final String START_CODE = "add 1,0,";
+		final String[] lines = text.split("\\n");
+		for (String line : lines) {
+			if (!(line = line.trim()).startsWith(START_CODE)) continue;
+			line = line.substring(START_CODE.length()).trim();
+			int value;
+			try {
+				value = Integer.parseInt(line);
+			} catch (NumberFormatException e) {
+				Log.d("NaN", line);
+				continue;
+			}
+			addPoint(value);
+		}
+	}
+}

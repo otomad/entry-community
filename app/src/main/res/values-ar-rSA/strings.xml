@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">الدخول</string>
+	<string name="navigation_drawer_open">افتح درج التنقل</string>
+	<string name="navigation_drawer_close">أغلق درج التنقل</string>
+	<string name="nav_header_title">مجتمع الدخول</string>
+	<string name="nav_header_subtitle">٤٠٨ الاستوديو الإلكتروني</string>
+	<string name="nav_header_desc">فريق الأستاذ ليو ، ٥ سنوات من الخبرة في تطوير المشروع</string>
+	<string name="action_settings">إعدادات</string>
+	<string name="menu_home">الصفحة الرئيسية</string>
+	<string name="menu_serial_assistant">مساعد المنفذ التسلسلي</string>
+	<string name="menu_oscilloscope">راسم الذبذبات</string>
+	<string name="lan_as_client_label">كعميل TCP</string>
+	<string name="lan_as_server_label">كخادم TCP</string>
+	<string name="menu_connect">الاتصال</string>
+	<string name="start_connect">بدء الاتصال</string>
+	<string name="stop_connect">وقف الاتصال</string>
+	<string name="text_home">لنقم بتكوين خصائص الاتصال الآن</string>
+	<string name="server_ip_address">عنوان IP للخادم</string>
+	<string name="server_port">منفذ الخادم</string>
+	<string name="switch_to_landscape">قم بالتبديل إلى العرض الأفقي</string>
+	<string name="switch_to_portrait">التبديل إلى العرض الرأسي</string>
+	<string name="clear_message">امسح الكل</string>
+	<string name="unconnected_server_info">لا يوجد خادم متصل الآن</string>
+	<string name="that_has_disconnected">تم قطع اتصال الطرف الآخر</string>
+	<string name="functional_navigation">التنقل الوظيفي</string>
+	<string name="press_again_to_exit">اضغط مرة أخرى للخروج</string>
+	<string name="please_input_ip_address">يرجى ملء حقل عنوان IP</string>
+	<string name="please_input_port">يرجى ملء حقل المنفذ</string>
+	<string name="open_client_error">تم إغلاق الاتصال أو إدخال عنوان غير صحيح أو أن الطرف الآخر لا يفتح الخادم</string>
+	<string name="open_client_successful">نجح الاتصال</string>
+	<string name="auto_clear_send">مسح إرسال النص تلقائيًا</string>
+	<string name="waveform_dataset">الموجي</string>
+	<string name="no_chart_data_available">لا توجد بيانات الرسم البياني المتاحة</string>
+	<string name="ensure_clear_all">هل أنت متأكد أنك تريد مسح الكل؟</string>
+	<string name="button_ok">تحديد</string>
+	<string name="button_cancel">يلغي</string>
+	<string name="uncaught_wifi_connect">غير متصل بشبكة WLAN</string>
+	<string name="to_connect">للاتصال</string>
+	<string name="uncaught_wifi_connect_info">غير متصل حاليًا بشبكة WLAN. يرجى محاولة الاتصال واستخدام هذا التطبيق. هل تريد الاتصال الان؟</string>
+</resources>

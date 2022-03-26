@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Вход</string>
+	<string name="navigation_drawer_open">Открыть Панель Навигации</string>
+	<string name="navigation_drawer_close">Закрыть Панель Навигации</string>
+	<string name="nav_header_title">Вход Сообщество</string>
+	<string name="nav_header_subtitle">408 Электронная Студия</string>
+	<string name="nav_header_desc">Команда профессора Лю, 5 лет опыта разработки проектов</string>
+	<string name="action_settings">Настройки</string>
+	<string name="menu_home">Дом</string>
+	<string name="menu_serial_assistant">Помощник Последовательного Порта</string>
+	<string name="menu_oscilloscope">Осциллограф</string>
+	<string name="lan_as_client_label">Как TCP-Клиент</string>
+	<string name="lan_as_server_label">Как TCP-Сервер</string>
+	<string name="menu_connect">Подключение</string>
+	<string name="start_connect">Начать Подключение</string>
+	<string name="stop_connect">Остановить Подключение</string>
+	<string name="text_home">Теперь настроим свойства подключения</string>
+	<string name="server_ip_address">IP-Адрес Сервера</string>
+	<string name="server_port">Порт Сервера</string>
+	<string name="switch_to_landscape">Перейти в Альбомный Режим</string>
+	<string name="switch_to_portrait">Перейти в Портретный Режим</string>
+	<string name="clear_message">Очистить Все</string>
+	<string name="unconnected_server_info">Сервер не Подключен Сейчас</string>
+	<string name="that_has_disconnected">Другой абонент отключен</string>
+	<string name="functional_navigation">Функциональная Навигация</string>
+	<string name="press_again_to_exit">Нажмите еще раз, чтобы выйти</string>
+	<string name="please_input_ip_address">Заполните поле IP-адреса</string>
+	<string name="please_input_port">Заполните поле номер порта</string>
+	<string name="open_client_error">Соединение закрыто, введен неверный адрес или другая сторона не открывает сервер</string>
+	<string name="open_client_successful">Подключение выполнено успешно</string>
+	<string name="auto_clear_send">Автоматически очистить отправляемый текст</string>
+	<string name="waveform_dataset">Форма Волны</string>
+	<string name="no_chart_data_available">Нет данных диаграммы</string>
+	<string name="ensure_clear_all">Вы уверены, что хотите удалить все?</string>
+	<string name="button_cancel">Отмена</string>
+	<string name="button_ok">Определять</string>
+	<string name="uncaught_wifi_connect">Не подключен к WLAN</string>
+	<string name="to_connect">Для подключения</string>
+	<string name="uncaught_wifi_connect_info">В настоящее время не подключен к WLAN. Пожалуйста, попробуйте подключиться и использовать это приложение. Вы хотите подключиться сейчас?</string>
+</resources>

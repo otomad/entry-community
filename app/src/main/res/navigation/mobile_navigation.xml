@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.pb_408es.entry.ui.home.HomeFragment"
+        android:label="@string/nav_header_title"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_serial_assistant"
+        android:name="com.pb_408es.entry.ui.serialassistant.SerialAssistantFragment"
+        android:label="@string/menu_serial_assistant"
+        tools:layout="@layout/fragment_serial_assistant" />
+
+    <fragment
+        android:id="@+id/nav_oscilloscope"
+        android:name="com.pb_408es.entry.ui.oscilloscope.OscilloscopeFragment"
+        android:label="@string/menu_oscilloscope"
+        tools:layout="@layout/fragment_oscilloscope" />
+</navigation>

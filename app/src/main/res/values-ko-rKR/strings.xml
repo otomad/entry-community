@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">파빈 과학기술 통신</string>
+	<string name="nav_header_title">파빈 과학기술 통신</string>
+	<string name="navigation_drawer_open">탐색 창 열기</string>
+	<string name="navigation_drawer_close">탐색 창 닫기</string>
+	<string name="nav_header_subtitle">408 전자 스튜디오</string>
+	<string name="nav_header_desc">유 교수 팀，5 년 프로젝트 개발 경험</string>
+	<string name="action_settings">설정</string>
+	<string name="menu_home">홈페이지</string>
+	<string name="menu_serial_assistant">직렬 포트 도우미</string>
+	<string name="menu_oscilloscope">오실로스코프</string>
+	<string name="lan_as_client_label">TCP 클라이언트로</string>
+	<string name="lan_as_server_label">TCP 서버로</string>
+	<string name="menu_connect">연결</string>
+	<string name="start_connect">연결 시작</string>
+	<string name="stop_connect">연결 중지</string>
+	<string name="text_home">이제 연결 속성을 구성해 보겠습니다</string>
+	<string name="server_ip_address">서버 IP 주소</string>
+	<string name="server_port">서버 포트</string>
+	<string name="switch_to_landscape">가로 보기로 전환</string>
+	<string name="switch_to_portrait">세로 보기로 전환</string>
+	<string name="clear_message">모두 지우기</string>
+	<string name="unconnected_server_info">연결된 서버 없음</string>
+	<string name="that_has_disconnected">상대방이 끊겼습니다</string>
+	<string name="functional_navigation">기능 탐색</string>
+	<string name="press_again_to_exit">종료하려면 다시 누르십시오</string>
+	<string name="please_input_ip_address">IP 주소 필드 를 입력 하 세 요</string>
+	<string name="please_input_port">포트 번호 필드 를 입력 하 십시오</string>
+	<string name="open_client_error">연결이 닫혔거나 잘못된 주소를 입력했거나 상대방이 서버를 열지 않음</string>
+	<string name="open_client_successful">연결 성공</string>
+	<string name="auto_clear_send">자동으로 보내는 문자 지우기</string>
+	<string name="waveform_dataset">파형</string>
+	<string name="no_chart_data_available">사용 가능한 차트 데이터가 없습니다</string>
+	<string name="ensure_clear_all">모두 지우시겠습니까？</string>
+	<string name="button_ok">결정</string>
+	<string name="button_cancel">취소</string>
+	<string name="uncaught_wifi_connect">WLAN 에 연결되지 않음</string>
+	<string name="to_connect">연결</string>
+	<string name="uncaught_wifi_connect_info">현재 WLAN 에 연결되어 있지 않습니다。이 앱에 연결하여 사용하십시오。지금 연결하시겠습니까？</string>
+</resources>

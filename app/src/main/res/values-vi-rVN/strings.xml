@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Hỏng Gần Công nghệ Truyền thông</string>
+	<string name="nav_header_title">Hỏng Gần Cạnh Công nghệ Truyền thông</string>
+	<string name="navigation_drawer_open">Mở Ngăn Điều Hướng</string>
+	<string name="navigation_drawer_close">Đóng Ngăn Điều Hướng</string>
+	<string name="nav_header_subtitle">408 Phòng Thu Điện Tử</string>
+	<string name="nav_header_desc">Nhóm của Giáo sư Lưu, năm năm kinh nghiệm phát triển dự án</string>
+	<string name="action_settings">Cài đặt</string>
+	<string name="menu_home">Trang Chủ</string>
+	<string name="menu_serial_assistant">Hỗ trợ cổng nối tiếp</string>
+	<string name="menu_oscilloscope">Máy hiện sóng</string>
+	<string name="lan_as_client_label">Là ứng dụng khách TCP</string>
+	<string name="lan_as_server_label">Là máy chủ TCP</string>
+	<string name="menu_connect">Kết nối</string>
+	<string name="start_connect">Bắt đầu kết nối</string>
+	<string name="stop_connect">Dừng kết nối</string>
+	<string name="text_home">Hãy cấu hình các thuộc tính kết nối ngay bây giờ</string>
+	<string name="server_ip_address">Địa chỉ IP máy chủ</string>
+	<string name="server_port">Cổng máy chủ</string>
+	<string name="switch_to_landscape">Chuyển sang Chế độ xem ngang</string>
+	<string name="switch_to_portrait">Chuyển sang Chế độ xem dọc</string>
+	<string name="clear_message">Quet sạch tât cả</string>
+	<string name="unconnected_server_info">Không có máy chủ nào được kết nối ngay bây giờ</string>
+	<string name="that_has_disconnected">Bên kia đã bị ngắt kết nối</string>
+	<string name="functional_navigation">Điều hướng chức năng</string>
+	<string name="press_again_to_exit">Nhấn một lần nữa để thoát</string>
+	<string name="please_input_ip_address">Xin hãy điền vào địa chỉ IP</string>
+	<string name="please_input_port">Xin hãy điền vào địa chỉ cửa</string>
+	<string name="open_client_error">Kết nối bị đóng, nhập địa chỉ không chính xác hoặc bên kia không mở máy chủ</string>
+	<string name="open_client_successful">Kết nối thành công</string>
+	<string name="auto_clear_send">Tự động xóa văn bản gửi</string>
+	<string name="waveform_dataset">Dạng Sóng</string>
+	<string name="no_chart_data_available">Không có sẵn dữ liệu biểu đồ</string>
+	<string name="ensure_clear_all">Bạn có chắc chắn muốn xóa tất cả?</string>
+	<string name="button_cancel">Hủy bỏ</string>
+	<string name="button_ok">Mục đích</string>
+	<string name="uncaught_wifi_connect">Không được kết nối với WLAN</string>
+	<string name="to_connect">Kết nối</string>
+	<string name="uncaught_wifi_connect_info">Hiện không được kết nối với WLAN. Hãy cố gắng kết nối và sử dụng ứng dụng này. Bạn có muốn kết nối ngay bây giờ không?</string>
+</resources>

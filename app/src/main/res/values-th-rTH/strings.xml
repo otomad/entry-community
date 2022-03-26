@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">รายการ</string>
+	<string name="navigation_drawer_open">เปิดลิ้นชักการนำทาง</string>
+	<string name="navigation_drawer_close">ปิดแถบเมนูเลื่อนด้านข้าง</string>
+	<string name="nav_header_title">ชุมชน รายการ</string>
+	<string name="nav_header_subtitle">408 สตูดิโออิเล็กทรอนิกส์</string>
+	<string name="nav_header_desc">ทีมศาสตราจารย์หลิวประสบการณ์การพัฒนาโครงการ 5 ปี</string>
+	<string name="action_settings">การตั้งค่า</string>
+	<string name="menu_home">บ้าน</string>
+	<string name="menu_serial_assistant">ผู้ช่วยพอร์ตอนุกรม</string>
+	<string name="menu_oscilloscope">ออสซิลโลสโคป</string>
+	<string name="lan_as_client_label">เป็นไคลเอนต์ TCP</string>
+	<string name="lan_as_server_label">เป็นเซิร์ฟเวอร์ TCP</string>
+	<string name="start_connect">เริ่มการเชื่อมต่อ</string>
+	<string name="stop_connect">หยุดการเชื่อมต่อ</string>
+	<string name="menu_connect">การเชื่อมต่อ</string>
+	<string name="text_home">มากำหนดค่าคุณสมบัติการเชื่อมต่อกันเถอะ</string>
+	<string name="server_ip_address">ที่อยู่ IP ของเซิร์ฟเวอร์</string>
+	<string name="server_port">พอร์ตเซิร์ฟเวอร์</string>
+	<string name="switch_to_landscape">เปลี่ยนไปใช้มุมมองแนวนอน</string>
+	<string name="switch_to_portrait">เปลี่ยนไปใช้มุมมองแนวตั้ง</string>
+	<string name="clear_message">ลบทั้งหมด</string>
+	<string name="unconnected_server_info">ไม่มีเซิร์ฟเวอร์เชื่อมต่ออยู่ตอนนี้</string>
+	<string name="that_has_disconnected">อีกฝ่ายถูกตัดการเชื่อมต่อ</string>
+	<string name="functional_navigation">ฟังก์ชั่นการนำทาง</string>
+	<string name="press_again_to_exit">กดอีกครั้งเพื่อออก</string>
+	<string name="please_input_ip_address">กรุณากรอกข้อมูลที่อยู่ IP ฟิลด์</string>
+	<string name="please_input_port">กรุณากรอกหมายเลขพอร์ตฟิลด์</string>
+	<string name="open_client_error">ปิดการเชื่อมต่อ ใส่ที่อยู่ไม่ถูกต้อง หรืออีกฝ่ายไม่เปิดเซิร์ฟเวอร์</string>
+	<string name="open_client_successful">เชื่อมต่อสำเร็จ</string>
+	<string name="auto_clear_send">ล้างการส่งข้อความโดยอัตโนมัติ</string>
+	<string name="waveform_dataset">รูปคลื่น</string>
+	<string name="no_chart_data_available">ไม่มีข้อมูลแผนภูมิ</string>
+	<string name="ensure_clear_all">คุณแน่ใจหรือไม่ว่าต้องการล้างข้อมูลทั้งหมด</string>
+	<string name="button_ok">กำหนด</string>
+	<string name="button_cancel">ยกเลิก</string>
+	<string name="uncaught_wifi_connect">ไม่ได้เชื่อมต่อกับ WLAN</string>
+	<string name="to_connect">เพื่อเชื่อมต่อ</string>
+	<string name="uncaught_wifi_connect_info">ไม่ได้เชื่อมต่อกับ WLAN ในขณะนี้ โปรดลองเชื่อมต่อและใช้แอพนี้ คุณต้องการเชื่อมต่อตอนนี้หรือไม่</string>
+</resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">破濒科技通信</string>
+    <string name="navigation_drawer_open">打开导航菜单</string>
+    <string name="navigation_drawer_close">关闭导航菜单</string>
+    <string name="nav_header_title">破濒科技通信</string>
+    <string name="nav_header_subtitle">408 电子工作室</string>
+    <string name="nav_header_desc">刘教授团队，五年项目开发经验</string>
+    <string name="action_settings">设置</string>
+    <string name="menu_home">主页</string>
+    <string name="menu_serial_assistant">串口助手</string>
+    <string name="menu_oscilloscope">示波器</string>
+    <string name="lan_as_client_label">作为 TCP 客户端</string>
+    <string name="lan_as_server_label">作为 TCP 服务端</string>
+    <string name="menu_connect">连接</string>
+    <string name="start_connect">启动连接</string>
+    <string name="stop_connect">断开连接</string>
+    <string name="text_home">现在让我们来配置一下连接属性吧</string>
+    <string name="server_ip_address">服务器 IP 地址</string>
+    <string name="server_port">服务器端口号</string>
+	<string name="switch_to_landscape">切换为横屏</string>
+    <string name="switch_to_portrait">切换为竖屏</string>
+	<string name="clear_message">清空</string>
+	<string name="unconnected_server_info">当前没有任何连接</string>
+	<string name="that_has_disconnected">对方已断开连接</string>
+	<string name="functional_navigation">功能导航</string>
+	<string name="press_again_to_exit">再按一次退出程序</string>
+	<string name="please_input_ip_address">请正确填写 IP 地址字段</string>
+	<string name="please_input_port">请正确填写端口号字段</string>
+	<string name="open_client_error">连接关闭，输入的地址有误或对方未开启服务端</string>
+	<string name="open_client_successful">连接成功</string>
+	<string name="auto_clear_send">自动清空发送文本</string>
+	<string name="waveform_dataset">波形</string>
+	<string name="no_chart_data_available">无图表数据</string>
+	<string name="ensure_clear_all">确定要清空？</string>
+	<string name="button_ok">确定</string>
+	<string name="button_cancel">取消</string>
+	<string name="uncaught_wifi_connect">未连接 WLAN</string>
+	<string name="uncaught_wifi_connect_info">当前未连接到 WLAN，请尝试连接后使用本应用，是否立即连接？</string>
+	<string name="to_connect">去连接</string>
+</resources>

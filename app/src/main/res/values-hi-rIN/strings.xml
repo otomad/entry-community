@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">प्रवेश</string>
+	<string name="navigation_drawer_open">नेविगेशन दराज खोलें</string>
+	<string name="navigation_drawer_close">नेविगेशन दराज बंद करें</string>
+	<string name="nav_header_title">प्रवेश समुदाय</string>
+	<string name="nav_header_subtitle">४०८ इलेक्ट्रॉनिक स्टूडियो</string>
+	<string name="nav_header_desc">प्रोफेसर लियू टीम, परियोजना विकास के ५ साल का अनुभव</string>
+	<string name="action_settings">समायोजन</string>
+	<string name="menu_home">घर</string>
+	<string name="menu_serial_assistant">सीरियल पोर्ट असिस्टेंट</string>
+	<string name="menu_oscilloscope">आस्टसीलस्कप</string>
+	<string name="lan_as_client_label">टीसीपी क्लाइंट के रूप में</string>
+	<string name="lan_as_server_label">टीसीपी सर्वर के रूप में</string>
+	<string name="menu_connect">कनेक्शन</string>
+	<string name="start_connect">कनेक्शन शुरू करें</string>
+	<string name="stop_connect">कनेक्शन बंद करो</string>
+	<string name="text_home">आइए अब कनेक्शन गुणों को कॉन्फ़िगर करें</string>
+	<string name="server_ip_address">सर्वर आईपी पता</string>
+	<string name="server_port">सर्वर पोर्ट</string>
+	<string name="switch_to_landscape">लैंडस्केप व्यू पर स्विच करें</string>
+	<string name="switch_to_portrait">पोर्ट्रेट व्यू पर स्विच करें</string>
+	<string name="clear_message">सभी साफ करें</string>
+	<string name="unconnected_server_info">अब कोई सर्वर कनेक्ट नहीं है</string>
+	<string name="that_has_disconnected">दूसरे पक्ष को काट दिया गया है</string>
+	<string name="functional_navigation">कार्यात्मक नेविगेशन</string>
+	<string name="press_again_to_exit">बाहर निकलने के लिए फिर से दबाएं</string>
+	<string name="please_input_ip_address">कृपया आईपी पता क्षेत्र भरें</string>
+	<string name="please_input_port">कृपया पोर्ट संख्या क्षेत्र में भरें</string>
+	<string name="open_client_error">कनेक्शन बंद हो गया है, गलत पता दर्ज किया गया है या अन्य पक्ष सर्वर नहीं खोलता है</string>
+	<string name="open_client_successful">कनेक्ट सफल</string>
+	<string name="auto_clear_send">पाठ भेजने को स्वचालित रूप से साफ़ करें</string>
+	<string name="waveform_dataset">तरंग</string>
+	<string name="no_chart_data_available">कोई चार्ट डेटा उपलब्ध नहीं है</string>
+	<string name="ensure_clear_all">क्या आप वाकई सभी को साफ़ करना चाहते हैं?</string>
+	<string name="button_ok">ठानना</string>
+	<string name="button_cancel">रद्द करना</string>
+	<string name="uncaught_wifi_connect">WLAN से कनेक्ट नहीं है</string>
+	<string name="to_connect">कनेक्ट करने के लिए</string>
+	<string name="uncaught_wifi_connect_info">वर्तमान में WLAN से कनेक्टेड नहीं है। कृपया इस ऐप को कनेक्ट करने और उपयोग करने का प्रयास करें। क्या आप अभी कनेक्ट करना चाहते हैं?</string>
+</resources>

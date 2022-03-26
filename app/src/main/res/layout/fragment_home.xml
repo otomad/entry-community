@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/nav_home_layout"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".ui.home.HomeFragment">
+
+
+	<androidx.core.widget.NestedScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:fillViewport="true">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:padding="15dp">
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="@dimen/activity_vertical_margin"
+				android:fontFamily="sans-serif-thin"
+				android:text="@string/text_home"
+				android:textAlignment="viewStart"
+				android:textColor="?attr/colorSecondary"
+				android:textSize="@dimen/content_large_font" />
+
+			<View
+				android:id="@+id/divider"
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:background="?android:attr/listDivider" />
+
+			<RadioGroup
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="@dimen/nav_header_vertical_spacing"
+				android:layout_marginBottom="@dimen/nav_header_vertical_spacing">
+
+				<RadioButton
+					android:id="@+id/as_server_radio"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:enabled="false"
+					android:text="@string/lan_as_server_label"
+					android:textAlignment="viewStart"
+					android:translationZ="10dp" />
+
+				<RadioButton
+					android:id="@+id/as_client_radio"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:checked="true"
+					android:text="@string/lan_as_client_label"
+					android:textAlignment="viewStart"
+					android:translationZ="10dp" />
+
+			</RadioGroup>
+
+			<View
+				android:id="@+id/divider2"
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:background="?android:attr/listDivider" />
+
+			<TextView
+				android:id="@+id/server_ip_address_caption"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="@dimen/activity_vertical_margin"
+				android:labelFor="@id/server_ip_address_text"
+				android:text="@string/server_ip_address"
+				android:textAlignment="viewStart"
+				android:textSize="@dimen/form_label" />
+
+			<EditText
+				android:id="@+id/server_ip_address_text"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:ems="10"
+				android:inputType="text|textAutoComplete|numberDecimal"
+				android:textAlignment="viewStart" />
+
+			<TextView
+				android:id="@+id/server_port_caption"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="@dimen/activity_vertical_margin"
+				android:labelFor="@+id/server_port_text"
+				android:text="@string/server_port"
+				android:textAlignment="viewStart"
+				android:textSize="@dimen/form_label" />
+
+			<EditText
+				android:id="@+id/server_port_text"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:ems="10"
+				android:inputType="number|textAutoComplete"
+				android:textAlignment="viewStart" />
+
+		</LinearLayout>
+	</androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">破瀕科技通信</string>
+	<string name="navigation_drawer_open">打開導航抽屜</string>
+	<string name="navigation_drawer_close">關閉導航抽屜</string>
+	<string name="nav_header_title">破瀕科技通信</string>
+	<string name="nav_header_subtitle">408 電子工作室</string>
+	<string name="nav_header_desc">劉教授團隊，五年專案開發經驗</string>
+	<string name="action_settings">設定</string>
+	<string name="menu_home">主頁</string>
+	<string name="menu_serial_assistant">串列埠助理</string>
+	<string name="menu_oscilloscope">示波器</string>
+	<string name="lan_as_client_label">作為 TCP 用戶端</string>
+	<string name="lan_as_server_label">作為 TCP 服務端</string>
+	<string name="start_connect">啟動連接</string>
+	<string name="menu_connect">連接</string>
+	<string name="stop_connect">斷開連接</string>
+	<string name="text_home">現在讓我們來配寘一下連接内容吧</string>
+	<string name="server_ip_address">伺服器 IP 地址</string>
+	<string name="server_port">伺服器埠號</string>
+	<string name="switch_to_landscape">切換到橫向視圖</string>
+	<string name="switch_to_portrait">切換到縱向視圖</string>
+	<string name="clear_message">清空</string>
+	<string name="unconnected_server_info">當前沒有任何連接</string>
+	<string name="that_has_disconnected">對方已斷開連接</string>
+	<string name="functional_navigation">功能導航</string>
+	<string name="press_again_to_exit">再按一次退出程式</string>
+	<string name="please_input_port">請正確填寫埠號欄位</string>
+	<string name="please_input_ip_address">請正確填寫 IP 地址欄位</string>
+	<string name="open_client_error">連接關閉，輸入的地址有誤或對方未開啟伺服器</string>
+	<string name="open_client_successful">連接成功</string>
+	<string name="auto_clear_send">自動清空發送文字</string>
+	<string name="no_chart_data_available">無圖表數據</string>
+	<string name="waveform_dataset">波形</string>
+	<string name="ensure_clear_all">確定要清空？</string>
+	<string name="button_ok">確定</string>
+	<string name="button_cancel">取消</string>
+	<string name="uncaught_wifi_connect">未連接 WLAN</string>
+	<string name="uncaught_wifi_connect_info">當前未連接到 WLAN，請嘗試連接後使用本應用，是否立即連接？</string>
+	<string name="to_connect">去連接</string>
+</resources>

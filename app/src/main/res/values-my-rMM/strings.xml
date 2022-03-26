@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">ဝင်သွားခြင်း</string>
+	<string name="navigation_drawer_open">လမ်းကြောင်းပြအံဆွဲကိုဖွင့်ပါ</string>
+	<string name="navigation_drawer_close">လမ်းကြောင်းပြအံဆွဲကိုပိတ်ပါ</string>
+	<string name="nav_header_title">ဝင်ခွင့်အသိုက်အဝန်း</string>
+	<string name="nav_header_subtitle">408 အီလက်ထရောနစ်စတူဒီယို</string>
+	<string name="nav_header_desc">ပါမောက္ခ Liu အဖွဲ့သည် ၅ နှစ်စီမံကိန်းဖွံ့ဖြိုးရေးအတွေ့အကြုံရှိသည်</string>
+	<string name="action_settings">ဆက်တင်များ</string>
+	<string name="menu_home">အိမ်</string>
+	<string name="menu_serial_assistant">Serial Port လက်ထောက်</string>
+	<string name="menu_oscilloscope">Oscilloscope</string>
+	<string name="lan_as_client_label">TCP Client အဖြစ်</string>
+	<string name="lan_as_server_label">TCP Server အတိုင်းပါပဲ</string>
+	<string name="menu_connect">ချိတ်ဆက်မှု</string>
+	<string name="start_connect">ချိတ်ဆက်မှုကိုစတင်ပါ</string>
+	<string name="stop_connect">ချိတ်ဆက်မှုရပ်ပါ</string>
+	<string name="text_home">အခု ဆက်သွယ်မှု ဂုဏ်သတ္တိတွေကို စီစဉ်ပါရစေ။</string>
+	<string name="server_ip_address">Server ရဲ့ IP Address ပါ</string>
+	<string name="server_port">Server Port ပါ</string>
+	<string name="switch_to_landscape">ရှုခင်းမြင်ကွင်းသို့ပြောင်းပါ</string>
+	<string name="switch_to_portrait">ဒေါင်လိုက်မြင်ကွင်းသို့ပြောင်းပါ</string>
+	<string name="clear_message">အားလုံးကိုရှင်း</string>
+	<string name="unconnected_server_info">ယခုဆာဗာမချိတ်ပါ</string>
+	<string name="that_has_disconnected">အခြားပါတီနှင့်အဆက်အသွယ်ဖြတ်ထားသည်</string>
+	<string name="functional_navigation">လုပ်ဆောင်နိုင်စွမ်းကိုညွှန်းသည်</string>
+	<string name="press_again_to_exit">ထွက်ရန်ထပ်နှိပ်ပါ</string>
+	<string name="please_input_ip_address">ကျေးဇူးပြု၍ IP address နေရာတွင်ဖြည့်ပါ</string>
+	<string name="please_input_port">ကျေးဇူးပြု၍ ဆိပ်ကမ်းအကွက်ကိုဖြည့်ပါ</string>
+	<string name="open_client_error">ဆက်သွယ်မှုပိတ်၊ လိပ်စာမမှန်ကန်ပါ၊ သို့မဟုတ်အခြားပါတီကဆာဗာမဖွင့်ပါ</string>
+	<string name="open_client_successful">ချိတ်ဆက်မှုအောင်မြင်သည်</string>
+	<string name="auto_clear_send">စာသားအလိုအလျောက်ရှင်းလင်းသည်</string>
+	<string name="waveform_dataset">လှိုင်းပုံစံ</string>
+	<string name="no_chart_data_available">ဇယားအချက်အလက်မရှိပါ</string>
+	<string name="ensure_clear_all">သင်အားလုံးကိုရှင်းပစ်ချင်သည်မှာသေချာသလား။</string>
+	<string name="button_cancel">ပယ်ဖျက်ပါ</string>
+	<string name="button_ok">ဆုံးဖြတ်သည်</string>
+	<string name="uncaught_wifi_connect">WLAN နှင့်မချိတ်ဆက်ပါ</string>
+	<string name="to_connect">ချိတ်ဆက်ရန်</string>
+	<string name="uncaught_wifi_connect_info">လောလောဆယ် WLAN နှင့်မချိတ်ဆက်ရသေးပါ။ ကျေးဇူးပြုပြီးဒီ app ကိုချိတ်ဆက်ပြီးသုံးကြည့်ပါ။ သင်ယခုချိတ်ဆက်လိုပါသလား။</string>
+</resources>
